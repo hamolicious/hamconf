@@ -1,0 +1,6 @@
+@version 1
+
+[SECTION]
+str_hello_world [something] = 'Hello World'
+
+

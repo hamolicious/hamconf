@@ -1,0 +1,7 @@
+@version 1
+
+illegal_assignment [str] = 'bad boy'
+
+[SECTION]
+this_is_fine [bool] = true
+
