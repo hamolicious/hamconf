@@ -7,3 +7,4 @@
 | floating point  | float |
 | string | str |
 | boolean | bool |
+| json | json |
