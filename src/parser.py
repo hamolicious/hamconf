@@ -3,6 +3,7 @@ from typing import Any, Type
 from . import Config
 from .types import Definitions
 
+
 def convert_to_type(type_: str, value: str, line_number: int) -> Any:
 	array = False
 
@@ -24,6 +25,7 @@ def convert_to_type(type_: str, value: str, line_number: int) -> Any:
 			return [converter.convert(v) for v in value]
 	except ValueError:
 		raise ValueError(f'Value: {value} is wrong format for type: {type_}, line number: {line_number}')
+
 
 def read_file(filename: str) -> str:
 	if not os.path.exists(filename):
