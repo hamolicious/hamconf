@@ -18,6 +18,9 @@ def convert_to_type(type_: str, value: str, line_number: int) -> Any:
 	if converter is None:
 		raise TypeError(f'Type: ({type_}) is not defined')
 
+	if type(value) is str and value.startswith('${'):
+		value = os.environ.get(value.replace('${', '')[:-1])
+
 	try:
 		if not array:
 			return converter.convert(value)

@@ -1,0 +1,7 @@
+@version 1
+
+[SECTION]
+env_var_float [float] = ${SOME_ENV_VAR}
+env_var_json [json] = ${JSON_ENV_VAR}
+
+
