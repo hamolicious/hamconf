@@ -1,0 +1,6 @@
+@version 1
+
+[SECTION]
+some_arr [arr] = ['Hello World']
+
+

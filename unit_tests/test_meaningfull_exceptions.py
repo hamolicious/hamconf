@@ -43,6 +43,12 @@ class MeaningfullExceptions(unittest.TestCase):
 		except Exception as e:
 			self.assertEqual(str(e), 'Path SECTION is invalid')
 
+	def test_typeless_array(self):
+		try:
+			parse_file('unit_tests/files/typeless_array.hamconf')
+		except SyntaxError as e:
+			self.assertEqual(str(e), 'Array requires a type `[arr ____]` on line: 4')
+
 
 if __name__ == '__main__':
 	unittest.main()

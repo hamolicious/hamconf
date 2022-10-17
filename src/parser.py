@@ -3,8 +3,10 @@ from typing import Any, Type
 from . import Config
 from .types import Definitions
 
-def convert_to_type(type_: str, value: str) -> Any:
+def convert_to_type(type_: str, value: str, line_number: int) -> Any:
 	array = False
+
+	if type_ == 'arr' : raise SyntaxError(f'Array requires a type `[arr ____]` on line: {line_number}')
 
 	if type_.split(' ')[0] == 'arr' and '[' in value.split('=')[-1] and ']' in value.split('=')[-1]:
 		array = True
@@ -56,7 +58,7 @@ def parse_assignment_line(line: str, line_number: int) -> tuple[str, Type, Any]:
 	except Exception as e:
 		raise SyntaxError(f'At line {line_number}: `{line}`')
 
-	value = convert_to_type(data_type, value)
+	value = convert_to_type(data_type, value, line_number)
 
 	return var_name, data_type, value
 
