@@ -1,0 +1,4 @@
+@version 1
+
+[SECTION]
+some_val [str] = ${VERY_IMPORTANT_ENV_VAR}

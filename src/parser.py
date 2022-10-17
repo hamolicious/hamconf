@@ -19,7 +19,10 @@ def convert_to_type(type_: str, value: str, line_number: int) -> Any:
 		raise TypeError(f'Type: ({type_}) is not defined')
 
 	if type(value) is str and value.startswith('${'):
-		value = os.environ.get(value.replace('${', '')[:-1])
+		env_var_name = value.replace('${', '')[:-1]
+		new_value = os.environ.get(env_var_name)
+		if new_value is None : raise ValueError(f'Environment variable {env_var_name} is not set')
+		value = new_value
 
 	try:
 		if not array:

@@ -55,6 +55,11 @@ class MeaningfullExceptions(unittest.TestCase):
 		except ValueError as e:
 			self.assertEqual(str(e), 'Value: 23.6534 is wrong format for type: int, line number: 4')
 
+	def test_undefined_env_var(self):
+		try:
+			parse_file('unit_tests/files/undefined_env_var.hamconf')
+		except ValueError as e:
+			self.assertEqual(str(e), 'Environment variable VERY_IMPORTANT_ENV_VAR is not set')
 
 if __name__ == '__main__':
 	unittest.main()
