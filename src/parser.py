@@ -83,6 +83,7 @@ def parse_file(filename: str) -> Config:
 	data = strip_comments(data)
 
 	config = {}
+	attribs = {}
 
 	current_section = None
 	line_number = 0
@@ -91,7 +92,9 @@ def parse_file(filename: str) -> Config:
 		line_number += 1
 		if line == '' : continue
 
-		if line.startswith('@') : continue
+		if line.startswith('@'):
+			attribs[line[1:].split(' ')[0].strip()] = line[1:].split(' ')[1].strip()
+			continue
 
 		if line.startswith('[') and line.endswith(']'):
 			config[remove_multiple_chars(line, '[]')] = {}
@@ -106,5 +109,5 @@ def parse_file(filename: str) -> Config:
 			'value': value, 'type': data_type
 		})
 
-	return Config(config)
+	return Config(config, attribs)
 

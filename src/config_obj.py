@@ -3,8 +3,13 @@ from .exceptions import SectionNotFound, ValueNotFound
 
 
 class Config:
-	def __init__(self, config: dict) -> None:
+	def __init__(self, config: dict, attribs: dict) -> None:
 		self.__config = config
+		self.__set_attributes(attribs)
+
+	def __set_attributes(self, attribs: dict) -> None:
+		for key in attribs:
+			self.__setattr__(key, attribs.get(key))
 
 	def get(self, path: str) -> Any:
 		if '.' not in path:
