@@ -3,7 +3,7 @@ from src import parse_file
 import os
 
 
-class MeaningfullExceptions(unittest.TestCase):
+class EnvVarFetching(unittest.TestCase):
 	def setUp(self) -> None:
 		os.environ['SOME_ENV_VAR'] = '3.5734'
 		os.environ['JSON_ENV_VAR'] = '{"value": 123}'
