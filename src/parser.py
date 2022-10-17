@@ -17,11 +17,13 @@ def convert_to_type(type_: str, value: str, line_number: int) -> Any:
 	if converter is None:
 		raise TypeError(f'Type: ({type_}) is not defined')
 
-	if not array:
-		return converter.convert(value)
-	if array:
-		return [converter.convert(v) for v in value]
-
+	try:
+		if not array:
+			return converter.convert(value)
+		if array:
+			return [converter.convert(v) for v in value]
+	except ValueError:
+		raise ValueError(f'Value: {value} is wrong format for type: {type_}, line number: {line_number}')
 
 def read_file(filename: str) -> str:
 	if not os.path.exists(filename):

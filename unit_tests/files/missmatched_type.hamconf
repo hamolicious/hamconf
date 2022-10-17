@@ -1,0 +1,6 @@
+@version 1
+
+[SECTION]
+wrong_type [int] = 23.6534
+
+

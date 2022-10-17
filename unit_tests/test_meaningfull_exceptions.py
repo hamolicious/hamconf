@@ -49,6 +49,12 @@ class MeaningfullExceptions(unittest.TestCase):
 		except SyntaxError as e:
 			self.assertEqual(str(e), 'Array requires a type `[arr ____]` on line: 4')
 
+	def test_wrong_type(self):
+		try:
+			parse_file('unit_tests/files/missmatched_type.hamconf')
+		except ValueError as e:
+			self.assertEqual(str(e), 'Value: 23.6534 is wrong format for type: int, line number: 4')
+
 
 if __name__ == '__main__':
 	unittest.main()
