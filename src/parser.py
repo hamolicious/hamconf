@@ -3,11 +3,22 @@ from typing import Any, Type
 from . import Config
 from .types import Definitions
 
-def type_str_to_type(type_: str) -> Type:
+def convert_to_type(type_: str, value: str) -> Any:
+	array = False
+
+	if type_.split(' ')[0] == 'arr' and '[' in value.split('=')[-1] and ']' in value.split('=')[-1]:
+		array = True
+		value = value[1:-1].replace(', ', ',').split(',')
+		type_ = type_.split(' ')[-1]
+
 	converter = Definitions.type_definitions.get(type_)
 	if converter is None:
 		raise TypeError(f'Type: ({type_}) is not defined')
-	return converter.convert
+
+	if not array:
+		return converter.convert(value)
+	if array:
+		return [converter.convert(v) for v in value]
 
 
 def read_file(filename: str) -> str:
@@ -45,7 +56,7 @@ def parse_assignment_line(line: str, line_number: int) -> tuple[str, Type, Any]:
 	except Exception as e:
 		raise SyntaxError(f'At line {line_number}: `{line}`')
 
-	value = type_str_to_type(data_type)(value)
+	value = convert_to_type(data_type, value)
 
 	return var_name, data_type, value
 

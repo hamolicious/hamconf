@@ -7,4 +7,5 @@ some_bool_value [bool] = true
 [SECTION.SUB_SECTION]
 float_pi [float] = 3.141
 dictionary [json] = {"key":"value"}
-
+float_array [arr float] = [1.4, 0.1, 0.0934]
+str_array [arr str] = ["value", "strings", "arrays"]
