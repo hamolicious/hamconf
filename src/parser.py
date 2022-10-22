@@ -1,3 +1,4 @@
+import json
 import os
 from typing import Any, Type
 from . import Config
@@ -38,18 +39,18 @@ def read_file(filename: str) -> str:
 		raise FileExistsError(f'File not found {filename}')
 
 	with open(filename, 'r') as f:
-		return f.read()
+		return f.read().split('\n')
 
 
 def strip_comments(data: str) -> str:
-	new_data = ''
-	slashes = 0
-	for char in data:
-		if char == '/'  : slashes += 1
-		if char == '\n' : slashes = 0
-		if slashes == 0 : new_data += char
+	output = []
+	for line in data:
+		if '//' in line:
+			line = line.split('//')[0].strip()
 
-	return new_data
+		output.append(line)
+
+	return output
 
 
 def remove_multiple_chars(string: str, chars: str) -> str:
@@ -88,7 +89,7 @@ def parse_file(filename: str) -> Config:
 	current_section = None
 	line_number = 0
 
-	for line in data.split('\n'):
+	for line in data:
 		line_number += 1
 		if line == '' : continue
 

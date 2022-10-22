@@ -27,5 +27,12 @@ class BasicFeatures(unittest.TestCase):
 			map(lambda v : type(v) is str, value)
 		))
 
+	def test_comment_parsing(self):
+		obj = parse_file('unit_tests/files/comments.hamconf')
+		value = obj.get('SECTION.str_hello_world')
+
+		self.assertIsInstance(obj, Config)
+		self.assertEqual(value, 'Hello World')
+
 if __name__ == '__main__':
 	unittest.main()

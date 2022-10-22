@@ -1,0 +1,15 @@
+@version 1
+
+[SECTION] // comments can go on sections
+str_hello_world [str] = 'Hello World' // comments can go after lines
+some_bool_value [bool] = true
+
+// comments can take up entire lines
+
+[SECTION.SUB_SECTION]
+float_pi [float] = 3.141
+dictionary [json] = {"key":"value"}
+float_array [arr float] = [1.4, 0.1, 0.0934]
+str_array [arr str] = ["value", "strings", "arrays"]
+
+// comments can go at the end of file
